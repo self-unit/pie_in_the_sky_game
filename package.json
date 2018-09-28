@@ -19,17 +19,18 @@
   },
   "homepage": "https://github.com/self-unit/pie_in_the_sky#readme",
   "dependencies": {
-    "express": "^4.16.3",
-    "highcharts": "^6.1.4",
-    "mongodb": "^3.0.7",
-    "he": "^1.2.0",
-    "npm": "^6.4.1"
+    "body-parser": "1.19.0",
+    "express": "4.17.1",
+    "highcharts": "9.0.1",
+    "mongodb": "3.6.4",
+    "he": "1.2.0",
+    "npm": "7.6.1"
   },
   "devDependencies": {
-    "mocha": "^5.2.0",
-    "webpack": "^4.19.1",
-    "webpack-cli": "^3.1.0",
-    "nodemon": "^1.17.4"
+    "mocha": "8.3.0",
+    "webpack": "5.24.3",
+    "webpack-cli": "4.5.0",
+    "nodemon": "2.0.7"
   },
   "keywords": [],
   "description": ""
