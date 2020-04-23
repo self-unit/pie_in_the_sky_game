@@ -1,21 +1,15 @@
-{
+module.exports = {
   "extends": [
     "standard",
-    "standard-jsx",
     "plugin:prettier/recommended"
   ],
-  "plugins": [
-    "react-hooks"
-  ],
+  "plugins": [],
   "globals": {
     "fetch": true
   },
   "parser": "babel-eslint",
   "parserOptions": {
     "allowImportExportEverywhere": true
-  },
-  "env": {
-    "jest": true
   },
   "rules": {
     "semi": [
@@ -28,9 +22,9 @@
         "arrowParens": "always",
         "printWidth": 120,
         "singleQuote": true,
-        "trailingComma": "es5"
+        "trailingComma": "es5",
+        "endOfLine":"auto"
       }
-    ],
-    "react-hooks/rules-of-hooks": "error"
+    ]
   }
 }

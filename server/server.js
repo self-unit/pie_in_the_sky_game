@@ -19,6 +19,6 @@ MongoClient.connect('mongodb://heroku_sdpqx20n:vu751c1jh8j0ciigp6to9k7093@ds1518
   })
   .catch(console.err);
 
-app.listen(process.env.PORT || 8080, function() {
+app.listen(process.env.PORT || 8080, function () {
   console.log(`Listening on port ${this.address().port}, ${app.settings.env}`);
 });
