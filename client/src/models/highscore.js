@@ -1,59 +1,67 @@
-const Request = require('../helpers/request.js');
-const PubSub = require('../helpers/pub_sub.js');
+import Request from '../helpers/request';
+import pubSub from '../helpers/pubSub';
 
-const HighScore = function(url) {
-  this.url = url;
-  this.currentEntries = null;
-};
+export default class HighScore {
+  constructor(url) {
+    this.url = url;
+    this.currentEntries = null;
+    this.winner = null;
+  }
 
-HighScore.prototype.bindEvents = function() {
-  this.getNames();
-  this.getWinner();
-};
-
-HighScore.prototype.getNames = function() {
-  const request = new Request(this.url);
-  request.get().then((entries) => {
-    this.currentEntries = entries;
-    PubSub.publish('HighScore:allscores', this.currentEntries);
-  });
-};
-
-HighScore.prototype.getWinner = function() {
-  PubSub.subscribe('Game:end-game', (event) => {
-    const winner = event.detail.currentPlayer.name;
-    if (this.currentEntries.find((entry) => entry.name === winner)) {
-      this.updatePlayer(winner);
-    } else {
-      this.postPlayer(winner);
-    }
-  });
-};
-
-HighScore.prototype.postPlayer = function(player) {
-  const request = new Request(this.url);
-  const entry = {
-    name: `${player}`,
-    wins: 1,
-  };
-  request
-    .post(entry)
-    .then(() => {
-      this.getNames();
-    })
-    .catch(console.error);
-};
-
-HighScore.prototype.updatePlayer = function(player) {
-  const winner = this.currentEntries.filter((entry) => entry.name === player);
-  const updatedWins = (winner[0].wins += 1);
-  const body = {
-    wins: updatedWins,
-  };
-  const request = new Request(this.url);
-  request.put(winner[0]._id, body).then(() => {
+  bindEvents() {
     this.getNames();
-  });
-};
+    this.getWinner();
+  }
 
-module.exports = HighScore;
+  getNames() {
+    const request = new Request(this.url);
+    try {
+      this.currentEntries = await request.get();
+      pubSub.publish('HighScore:allscores', this.currentEntries);
+    } catch (err) {
+      throw new Error('Invalid request to getNames');
+    }
+  }
+
+  getWinner() {
+    pubSub.subscribe('Game:end-game', (event) => {
+      const winner = event.detail.currentPlayer.name;
+      if (this.currentEntries.find((entry) => entry.name === winner)) {
+        this.updatePlayer(winner);
+      } else {
+        this.postPlayer(winner);
+      }
+    });
+  }
+
+  postPlayer(player) {
+    const request = new Request(this.url);
+    const entry = {
+      name: `${player}`,
+      wins: 1,
+    };
+    try {
+      await request.post(entry)
+      this.getNames();
+    } catch (err) {
+      throw new Error('Invalid request to postPlayer');
+    }
+  }
+
+  updatePlayer(player) {
+    this.winner = this.currentEntries.filter((entry) => entry.name === player);
+    this.winner[0].wins += 1;
+    const updatedWins = this.winner[0].wins;
+    const request = new Request(this.url);
+    const payload = {
+      wins: updatedWins,
+    };
+    try {
+      // eslint-disable-next-line no-underscore-dangle
+      await request.put(this.winner[0]._id, payload)
+      this.getNames();
+    } catch (err) {
+      throw new Error('Invalid request to updatePlayer')
+    }
+  }
+}

@@ -1,0 +1,269 @@
+body {
+  background-color: #e5f6f9;
+}
+
+#start-screen {
+  position: fixed;
+  z-index: 2;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 1%;
+  background-color: rgba(197, 192, 229, 0.95);
+  width: 80%;
+  height: 90%;
+  color: #68534b;
+  font-family: 'Black Ops One', cursive;
+  box-shadow: 0 0px 100px grey, 0 0px 100px rgba(0, 0, 0, 0.1);
+  border-radius: 2%;
+
+  &.end {
+    transition: all 1s ease-in-out;
+    visibility: hidden;
+    z-index: 0;
+    position: fixed;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 7%;
+    background-color: rgba(197, 192, 229, 0);
+    width: 80%;
+    height: 60%;
+    color: rgba(104, 83, 75, 0);
+    box-shadow: none;
+    opacity: 0;
+    border-radius: 2%;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 5em;
+    margin-top: 0.2em;
+
+    /* -webkit-text-stroke: 2px black; */
+  }
+}
+
+#start-screen-form {
+  font-family: 'Graduate', cursive;
+  position: relative;
+  display: grid;
+  grid-template-columns: 2fr 1.5fr;
+  grid-template-rows: 0.3fr 0.3fr 0.3fr;
+  width: 50%;
+  margin: 2% auto;
+
+  input,
+  label {
+    font-size: 1em;
+    margin: 0.5em;
+  }
+
+  input[type='submit'] {
+    cursor: pointer;
+    grid-column-start: 2;
+  }
+
+  select {
+    position: relative;
+    top: 8px;
+  }
+}
+
+#form-error {
+  color: red;
+  text-align: center;
+}
+
+#instructions {
+  margin-left: 4%;
+  font-family: 'Titillium Web', sans-serif;
+  grid-column: 1 / span 2;
+  font-size: 0.9em;
+}
+
+#instructions-drop-btn {
+  margin-bottom: 0.5em;
+  cursor: pointer;
+
+  &:after {
+    content: '\25BE';
+    position: relative;
+    left: 10px;
+  }
+}
+
+#instructions-dropdown {
+  margin-left: 4%;
+  margin-right: 4%;
+  font-family: 'Titillium Web', sans-serif;
+  line-height: 1.5em;
+
+  /* width: 60vw; */
+  /* z-index: 2; */
+  /* overflow: scroll; */
+  /* max-height: 170px; */
+}
+
+.hidden {
+  display: none;
+}
+
+#end-screen {
+  font-size: 3em;
+  display: none;
+  position: fixed;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 1%;
+  z-index: 2;
+  background-color: rgba(197, 192, 229, 0.95);
+  width: 80%;
+  height: 90%;
+  color: #68534b;
+  font-family: 'Black Ops One', cursive;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  box-shadow: 0 0px 100px grey, 0 0px 100px rgba(0, 0, 0, 0.1);
+  animation: fadein 1s;
+  -webkit-animation: fadein 1s;
+  border-radius: 2%;
+
+  button {
+    font-family: 'Graduate', cursive;
+    padding: 0.5em;
+    font-size: 0.3em;
+    border-radius: 2%;
+    text-decoration: none;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.wrapper {
+  font-family: 'Graduate', cursive;
+  display: grid;
+  width: 80%;
+  height: 80%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-left: 10%;
+  margin-right: 10%;
+  grid-template-areas: 'game game game' 'legend board player' 'legend board card';
+  grid-template-rows: 0.5fr 1.5fr 2fr;
+  grid-template-columns: 0.3fr 2fr 1fr;
+}
+
+#player1-score-display {
+  font-size: 1.2em;
+  display: inline-block;
+  vertical-align: middle;
+  mark {
+    color: white;
+  }
+}
+
+#player2-score-display,
+#player3-score-display,
+#player4-score-display {
+  font-size: 1.2em;
+  display: inline-block;
+  vertical-align: middle;
+  mark {
+    color: black;
+  }
+}
+
+#game-view-container .blinkPlayer {
+  animation: 1s blink step-end infinite;
+  -webkit-animation: 1s blink step-end infinite;
+}
+
+@keyframes blink {
+  from,
+  to {
+    color: #f96377;
+  }
+
+  50% {
+    color: black;
+  }
+}
+
+@-webkit-keyframes blink {
+  from,
+  to {
+    color: #f96377;
+  }
+
+  50% {
+    color: black;
+  }
+}
+
+.wrapper {
+  #game-view-container {
+    grid-area: game;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 0.5em;
+  }
+
+  #categoryLegend {
+    grid-area: legend;
+    width: 85px;
+    height: 35px;
+  }
+
+  #board-container {
+    grid-area: board;
+  }
+
+  #player-view-container {
+    grid-area: player;
+
+    /* margin-top: 2em; */
+    text-align: center;
+
+    /* line-height: 1.5em; */
+
+    h3 {
+      font-size: 1.5em;
+      line-height: 1.5em;
+    }
+
+    button {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+
+  #question-card {
+    grid-area: card;
+    margin-left: 1em;
+    font-family: 'Graduate', cursive;
+    line-height: 1.5em;
+
+    ul {
+      list-style-type: none;
+      margin: 10px 0;
+    }
+  }
+}

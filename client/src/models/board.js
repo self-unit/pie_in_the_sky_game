@@ -1,41 +1,46 @@
-const PubSub = require('../helpers/pub_sub.js');
+import pubSub from '../helpers/pubSub';
 
-const Board = function() {};
-
-Board.prototype.bindEvents = function() {
-  PubSub.subscribe('Game:player-choose-move', (evt) => {
-    this.highlightSquares(evt.detail[0], evt.detail[1]);
-  });
-};
-
-Board.prototype.setBoardPieces = function(number_of_players) {
-  document.querySelector('#p1-piece').style.display = 'block';
-  document.querySelector('#p2-piece').style.display = 'block';
-  if (number_of_players > 3) document.querySelector('#p4-piece').style.display = 'block';
-  if (number_of_players > 2) document.querySelector('#p3-piece').style.display = 'block';
-};
-
-Board.prototype.highlightSquares = function(squares, player) {
-  for (move_option of squares) {
-    const highlightedSquare = document.querySelector(`#${move_option}`);
-    highlightedSquare.classList.add('highlighted-move');
-    highlightedSquare.style.border = '3px white';
-    highlightedSquare.style.borderStyle = 'dashed solid';
-    highlightedSquare.style.color = 'white';
-    highlightedSquare.onclick = function() {
-      clearHighlightedSquares();
-      PubSub.publish('Board:player-move', this.id);
-    };
+export default class Board {
+  constructor(document) {
+    this.document = document;
+    this.highlightedSquare = null;
   }
-};
 
-clearHighlightedSquares = function() {
-  for (square of document.querySelectorAll('.highlighted-move')) {
-    square.classList.remove('highlighted-move');
-    square.style.border = 'none';
-    square.style.color = 'black';
-    square.onclick = null;
+  bindEvents() {
+    pubSub.subscribe('Game:player-choose-move', (evt) => {
+      this.highlightSquares(evt.detail[0]);
+    });
   }
-};
 
-module.exports = Board;
+  setBoardPieces(numberOfPlayers) {
+    this.document.querySelector('#p1-piece').style.display = 'block';
+    this.document.querySelector('#p2-piece').style.display = 'block';
+    if (numberOfPlayers > 3) this.document.querySelector('#p4-piece').style.display = 'block';
+    if (numberOfPlayers > 2) this.document.querySelector('#p3-piece').style.display = 'block';
+  }
+
+  highlightSquares(squares) {
+    const moveOptions = Object.keys(squares);
+    for (let i = 0; i < moveOptions; i += 1) {
+      this.highlightedSquare = document.querySelector(`#${i}`);
+      this.highlightedSquare.classList.add('highlighted-move');
+      this.highlightedSquare.style.border = '3px white';
+      this.highlightedSquare.style.borderStyle = 'dashed solid';
+      this.highlightedSquare.style.color = 'white';
+      this.highlightedSquare.onclick = () => {
+        this.clearHighlightedSquares();
+        pubSub.publish('Board:player-move', this.id);
+      };
+    }
+  }
+
+  clearHighlightedSquares() {
+    const squares = Object.keys(this.document.querySelectorAll('.highlighted-move'));
+    for (let i = 0; i < squares; i += 1) {
+      i.classList.remove('highlighted-move');
+      i.style.border = 'none';
+      i.style.color = 'black';
+      i.onclick = null;
+    }
+  }
+}

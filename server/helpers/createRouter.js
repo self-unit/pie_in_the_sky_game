@@ -1,7 +1,7 @@
-const express = require('express');
-const { ObjectID } = require('mongodb');
+import express from 'express';
+import { ObjectID } from 'mongodb';
 
-const createRouter = function (collection) {
+const createRouter = (collection) => {
   const router = express.Router();
 
   router.get('/', (req, res) => {
@@ -76,4 +76,4 @@ const createRouter = function (collection) {
   return router;
 };
 
-module.exports = createRouter;
+export default createRouter;

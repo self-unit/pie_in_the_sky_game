@@ -1,0 +1,53 @@
+#diePlace {
+  display: inline-flex;
+  justify-content: center;
+  background-color: white;
+  height: 70px;
+  width: 70px;
+  border: 1px solid gray;
+  border-radius: 8px;
+  font-size: 45px;
+  line-height: 70px;
+  box-shadow: 0 1px 2px gray, 0 2px 2px rgba(0, 0, 0, 0.2);
+  margin: 0.5em;
+}
+
+#dieButton {
+  display: inline-flex;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid gray;
+  color: black;
+  margin: 0.5em;
+  text-transform: uppercase;
+  width: 70px;
+  height: 25px;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0 1px 2px gray, 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+#timer {
+  animation: 1s blink step-end infinite;
+  -webkit-animation: 1s blink step-end infinite;
+}
+
+@keyframes blink {
+  from,
+  to {
+    color: #f96377;
+  }
+  50% {
+    color: black;
+  }
+}
+
+@-webkit-keyframes blink {
+  from,
+  to {
+    color: #f96377;
+  }
+  50% {
+    color: black;
+  }
+}

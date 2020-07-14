@@ -1,4 +1,4 @@
-const BoardMap = {
+const boardMap = {
   a1: {
     left: 0,
     top: 0,
@@ -331,4 +331,4 @@ const BoardMap = {
   },
 };
 
-module.exports = BoardMap;
+export default boardMap;

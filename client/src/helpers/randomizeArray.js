@@ -1,4 +1,4 @@
-function randomizeArray(array) {
+const randomizeArray = (array) => {
   const result = [];
   while (array.length > 0) {
     const next = Math.floor(Math.random() * array.length);
@@ -8,6 +8,6 @@ function randomizeArray(array) {
     array.splice(next, 1);
   }
   return result;
-}
+};
 
-module.exports = randomizeArray;
+export default randomizeArray;

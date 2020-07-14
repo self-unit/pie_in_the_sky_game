@@ -1,31 +1,35 @@
-const Request = function(url) {
-  this.url = url;
-};
+export default class Request {
+  constructor(url) {
+    this.url = url;
+  };
 
-Request.prototype.get = function() {
-  return fetch(this.url).then((response) => response.json());
-};
+  get() {
+    const response = await fetch(this.url)
+    return response.json();
+  }
 
-Request.prototype.post = function(payload) {
-  return fetch(this.url, {
-    method: 'POST',
-    body: JSON.stringify(payload),
-    headers: { 'Content-Type': 'application/json' },
-  }).then((response) => response.json());
-};
+  post(payload) {
+    const response = fetch(this.url, {
+      method: 'POST',
+      body: JSON.stringify(payload),
+      headers: { 'Content-Type': 'application/json' },
+    })
+    return response.json();
+  }
 
-Request.prototype.put = function(id, payload) {
-  return fetch(`${this.url}/${id}`, {
-    method: 'PUT',
-    body: JSON.stringify(payload),
-    headers: { 'Content-Type': 'application/json' },
-  }).then((response) => response.json());
-};
+  put(id, payload) {
+    const response = fetch(`${this.url}/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(payload),
+      headers: { 'Content-Type': 'application/json' },
+    })
+    return response.json();
+  }
 
-Request.prototype.delete = function(id) {
-  return fetch(`${this.url}/${id}`, {
-    method: 'DELETE',
-  }).then((response) => response.json());
+  delete(id) {
+    const response = fetch(`${this.url}/${id}`, {
+      method: 'DELETE'
+    })
+    return response.json();
+  }
 };
-
-module.exports = Request;

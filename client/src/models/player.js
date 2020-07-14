@@ -1,18 +1,19 @@
-const PubSub = require('../helpers/pub_sub.js');
+import pubSub from '../helpers/pubSub';
 
-const Player = function(name, id, player) {
-  this.icon = null;
-  this.name = name;
-  this.id = id;
-  this.score = [0, 0, 0, 0, 0, 0];
-  this.position = 'a1';
-  this.player = player;
-  this.colour = null;
-};
+export default class Player {
+  constructor(name, id, player) {
+    this.icon = null;
+    this.name = name;
+    this.id = id;
+    this.score = [0, 0, 0, 0, 0, 0];
+    this.position = 'a1';
+    this.player = player;
+    this.colour = null;
+    this.randomNumber = null;
+  }
 
-Player.prototype.rollDie = function() {
-  const randomNumber = Math.floor(Math.random() * 6 + 1);
-  PubSub.publish('Player:rollnumber', randomNumber);
-};
-
-module.exports = Player;
+  rollDie() {
+    this.randomNumber = Math.floor(Math.random() * 6 + 1);
+    pubSub.publish('Player:rollnumber', this.randomNumber);
+  }
+}

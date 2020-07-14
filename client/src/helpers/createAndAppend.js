@@ -1,4 +1,4 @@
-const createAndAppend = function(tag, htmlclass, id, text, parent) {
+const createAndAppend = (tag, htmlclass, id, text, parent) => {
   const element = document.createElement(tag);
   element.textContent = text;
   if (htmlclass) {
@@ -12,4 +12,4 @@ const createAndAppend = function(tag, htmlclass, id, text, parent) {
   return element;
 };
 
-module.exports = createAndAppend;
+export default createAndAppend;

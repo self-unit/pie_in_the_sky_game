@@ -1,0 +1,298 @@
+#board-container {
+  display: flex;
+  justify-content: center;
+}
+
+#board-grid {
+  box-shadow: 0 3px 12px gray, 0 3px 5px rgba(0, 0, 0, 0.2);
+  border: 1px solid gray;
+  width: 560px;
+  position: relative;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+
+  /* grid-gap: 1rem; */
+  grid-template-columns: repeat(7, 80px);
+  grid-template-rows: repeat(7, 80px);
+
+  /* display: grid;
+  grid-template-columns: 70px 70px 70px 70px 70px 70px 70px;
+  grid-template-rows: 70px 70px 70px 70px 70px 70px 70px;
+  position: relative;
+  height: 490px;
+  width: 490px;
+  background-color: #26413C; */
+
+  > div {
+    &:nth-child(1) {
+      grid-row: 1;
+      grid-column: 1;
+    }
+
+    &:nth-child(2) {
+      grid-row: 1;
+      grid-column: 2;
+    }
+
+    &:nth-child(3) {
+      grid-row: 1;
+      grid-column: 3;
+    }
+
+    &:nth-child(4) {
+      grid-row: 1;
+      grid-column: 4;
+    }
+
+    &:nth-child(5) {
+      grid-row: 1;
+      grid-column: 5;
+    }
+
+    &:nth-child(6) {
+      grid-row: 1;
+      grid-column: 6;
+    }
+
+    &:nth-child(7) {
+      grid-row: 1;
+      grid-column: 7;
+    }
+
+    &:nth-child(8) {
+      grid-row: 2;
+      grid-column: 1;
+    }
+
+    &:nth-child(9) {
+      grid-row: 2;
+      grid-column: 4;
+    }
+
+    &:nth-child(10) {
+      grid-row: 2;
+      grid-column: 7;
+    }
+
+    &:nth-child(11) {
+      grid-row: 3;
+      grid-column: 1;
+    }
+
+    &:nth-child(12) {
+      grid-row: 3;
+      grid-column: 4;
+    }
+
+    &:nth-child(13) {
+      grid-row: 3;
+      grid-column: 7;
+    }
+
+    &:nth-child(14) {
+      grid-row: 4;
+      grid-column: 1;
+    }
+
+    &:nth-child(15) {
+      grid-row: 4;
+      grid-column: 2;
+    }
+
+    &:nth-child(16) {
+      grid-row: 4;
+      grid-column: 3;
+    }
+
+    &:nth-child(17) {
+      grid-row: 4;
+      grid-column: 4;
+    }
+
+    &:nth-child(18) {
+      grid-row: 4;
+      grid-column: 5;
+    }
+
+    &:nth-child(19) {
+      grid-row: 4;
+      grid-column: 6;
+    }
+
+    &:nth-child(20) {
+      grid-row: 4;
+      grid-column: 7;
+    }
+
+    &:nth-child(21) {
+      grid-row: 5;
+      grid-column: 1;
+    }
+
+    &:nth-child(22) {
+      grid-row: 5;
+      grid-column: 4;
+    }
+
+    &:nth-child(23) {
+      grid-row: 5;
+      grid-column: 7;
+    }
+
+    &:nth-child(24) {
+      grid-row: 6;
+      grid-column: 1;
+    }
+
+    &:nth-child(25) {
+      grid-row: 6;
+      grid-column: 4;
+    }
+
+    &:nth-child(26) {
+      grid-row: 6;
+      grid-column: 7;
+    }
+
+    &:nth-child(27) {
+      grid-row: 7;
+      grid-column: 1;
+    }
+
+    &:nth-child(28) {
+      grid-row: 7;
+      grid-column: 2;
+    }
+
+    &:nth-child(29) {
+      grid-row: 7;
+      grid-column: 3;
+    }
+
+    &:nth-child(30) {
+      grid-row: 7;
+      grid-column: 4;
+    }
+
+    &:nth-child(31) {
+      grid-row: 7;
+      grid-column: 5;
+    }
+
+    &:nth-child(32) {
+      grid-row: 7;
+      grid-column: 6;
+    }
+
+    &:nth-child(33) {
+      grid-row: 7;
+      grid-column: 7;
+    }
+  }
+}
+
+/* #board-grid > div:nth-child(34) {
+  grid-row: 2 / 3;
+  grid-column: 2 / 4;
+} */
+
+.board-piece {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  top: 4px;
+  left: 4px;
+  height: 34px;
+  width: 34px;
+  border-radius: 50%;
+  background-color: black;
+  transition: all 0.4s linear;
+  box-shadow: 0 2px 5px gray, 0 3px 2px rgba(0, 0, 0, 0.2);
+}
+
+#p2-piece {
+  background-color: white;
+  top: 42px;
+  left: 42px;
+}
+
+#p3-piece {
+  background-color: lightgray;
+  top: 3px;
+  left: 42px;
+}
+
+#p4-piece {
+  background-color: darkgray;
+  top: 42px;
+  left: 3px;
+}
+
+.highlighted-move {
+  color: white;
+  border: 2px solid white;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+/*
+.playerPiece {
+  height: 30px;
+  width: 30px;
+  border-radius:50%;
+  background-color: black;
+  transition: all 0.2s linear;
+} */
+
+/* #player2 {
+  background-color: white;
+  bottom: 0;
+} */
+
+.movies,
+.science,
+.sports,
+.history,
+.music,
+.books {
+  /* border: 1px solid black; */
+  position: relative;
+}
+
+.movies {
+  background-color: #78edb3;
+}
+
+.science {
+  background-color: #f99f3e;
+}
+
+.sports {
+  background-color: #fde74c;
+}
+
+.history {
+  background-color: #51a5ef;
+}
+
+.music {
+  background-color: #f475e3;
+}
+
+.books {
+  background-color: #f96377;
+}
+
+#categoryLegend {
+  h3 {
+    margin: 10px 0;
+  }
+
+  div {
+    padding: 2px;
+    margin: 3px 0;
+  }
+}
