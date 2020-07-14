@@ -1,17 +1,29 @@
 import pubSub from '../helpers/pubSub';
 
+/** Class representing a timer */
 export default class Timer {
+  /**
+   * Create a timer
+   * @param {number} time - Starting value in seconds
+   */
   constructor(time) {
     this.timeLeft = time;
     this.tick = null;
   }
 
-  countdown(section) {
+  /**
+   * Start the countdown
+   * @method
+   */
+  countdown() {
     this.tick = setInterval(() => {
-      this.motion(section);
+      this.motion();
     }, 1000);
   }
 
+  /**
+   * @returns {number} Seconds left via pubSub
+   */
   motion() {
     if (this.timeLeft === 0) {
       this.endTimer();
@@ -21,6 +33,10 @@ export default class Timer {
     pubSub.publish('Timer:currentTime', this.timeLeft);
   }
 
+  /**
+   * End the countdown
+   * @method
+   */
   endTimer() {
     clearInterval(this.tick);
   }
