@@ -1,6 +1,6 @@
+const Highcharts = require('highcharts');
 const createAndAppend = require('../helpers/create_append');
 const PubSub = require('../helpers/pub_sub.js');
-const Highcharts = require('highcharts');
 
 const ResultsView = function() {};
 

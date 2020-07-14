@@ -93,7 +93,7 @@ Card.prototype.sortQuestion = function(category) {
 };
 
 Card.prototype.answerSelected = function(selectedIndex) {
-  const correctAnswer = this.currentQuestion.correctAnswer;
+  const {correctAnswer} = this.currentQuestion;
   const selectedAnswer = this.currentQuestion.allAnswers[selectedIndex];
   PubSub.publish('Card:is-correct', {
     isCorrect: selectedAnswer === correctAnswer,

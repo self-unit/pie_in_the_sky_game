@@ -1,6 +1,6 @@
+const he = require('he');
 const createAndAppend = require('../helpers/create_append.js');
 const PubSub = require('../helpers/pub_sub.js');
-const he = require('he');
 
 const QuestionView = function() {
   this.element = document.querySelector('#question-card');

@@ -8,11 +8,15 @@
     "dev": "node server/server.js",
     "server:dev": "nodemon server/server.js",
     "commit": "git-cz",
-    "lint": "eslint .",
-    "lintFix": "eslint --fix .",
     "release": "standard-version",
-    "heroku-postbuild": "webpack -p"
+    "heroku-postbuild": "webpack -p",
+    "code:check": "yarn code:lint && yarn code:format --check",
+    "code:clean": "yarn code:lint --fix && yarn code:format --write",
+    "code:lint": "eslint --ext .js,.jsx \"./server/\" & eslint --ext .js,.jsx \"./client/\"",
+    "code:format": "prettier \"./**/**/*.{js,jsx}\"",
+    "code:check:rules": "eslint --print-config .eslintrc.js | eslint-config-prettier-check"
   },
+  "side-effects": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/self-unit/pie_in_the_sky.git"
@@ -35,6 +39,7 @@
     "git-cz": "^4.7.0",
     "mocha": "^8.0.1",
     "nodemon": "^2.0.4",
+    "poetic": "^1.5.0",
     "standard-version": "^8.0.2",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12"

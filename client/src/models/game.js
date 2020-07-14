@@ -46,7 +46,7 @@ Game.prototype.startGame = function() {
 
 Game.prototype.playTurn = function() {
   PubSub.subscribe('Player:rollnumber', (evt) => {
-    const numberRolled = 'r' + evt.detail;
+    const numberRolled = `r${  evt.detail}`;
     const move_options = BoardMap[this.currentPlayer.position][numberRolled];
     PubSub.publish('Game:player-choose-move', [move_options, this.currentPlayer]);
     // this.board.movesPlayer(this.currentPlayer, moves);
