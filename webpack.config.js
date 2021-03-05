@@ -1,10 +1,12 @@
-const config = {
-  entry: `${ __dirname }/client/src/app.js`,
-  output: {
-    path: `${ __dirname }/client/public/js`,
-    filename: 'bundle.js'
-  },
-  'mode': 'development'
-};
+import url from 'url';
 
-module.exports = config;
+const dirname = url.fileURLToPath(new URL('.', import.meta.url));
+
+export default {
+  entry: `${dirname}/client/src/app.js`,
+  output: {
+    path: `${dirname}/client/public/js`,
+    filename: 'bundle.js',
+  },
+  mode: 'development',
+};

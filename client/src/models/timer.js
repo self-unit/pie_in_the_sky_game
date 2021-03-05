@@ -1,29 +1,29 @@
-const PubSub = require('../helpers/pub_sub.js');
+import { publish } from '../helpers/pubSub.js';
 
-const Timer = function (time) {
-  this.timeLeft = time;
-  this.tick = null;
-};
+class Timer {
+  constructor(time) {
+    this.timeLeft = time;
+    this.tick = null;
+  }
 
-Timer.prototype.countdown = function (section) {
+  countdown(section) {
     this.tick = setInterval(() => {
-     this.motion(section);
-   }, 1000);
+      this.motion(section);
+    }, 1000);
+  }
+
+  motion() {
+    if (this.timeLeft === 0) {
+      this.endTimer();
+    } else {
+      this.timeLeft -= 1;
+    }
+    publish('Timer:currentTime', this.timeLeft);
+  }
+
+  endTimer() {
+    clearInterval(this.tick);
+  }
 }
 
-Timer.prototype.motion = function (section) {
-  if (this.timeLeft === 0) {
-    this.endTimer();
-  } else {
-    this.timeLeft --;
-  };
-  PubSub.publish('Timer:currentTime', this.timeLeft)
-};
-
-Timer.prototype.endTimer = function () {
-  clearInterval(this.tick)
-};
-
-
-
-module.exports = Timer;
+export default Timer;

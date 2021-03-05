@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "mocha client/src/models/specs",
+    "test": "mocha",
     "build": "webpack -w",
     "dev": "node server/server.js",
     "server:dev": "nodemon server/server.js",
@@ -17,44 +17,53 @@
     "type": "git",
     "url": "git+https://github.com/self-unit/pie_in_the_sky.git"
   },
-  "author": "",
+  "author": "CodeClan group PITS",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/self-unit/pie_in_the_sky/issues"
   },
   "homepage": "https://github.com/self-unit/pie_in_the_sky#readme",
   "dependencies": {
-    "express": "^4.17.1",
-    "he": "^1.2.0",
-    "highcharts": "^8.0.0",
-    "mongodb": "^3.5.2",
-    "npm": "^6.13.4"
+    "body-parser": "1.19.0",
+    "express": "4.17.1",
+    "he": "1.2.0",
+    "highcharts": "9.0.1",
+    "mongodb": "3.6.4",
+    "npm": "7.6.0"
   },
+  "type": "module",
   "devDependencies": {
-    "babel-eslint": "10.0.3",
-    "eslint": "6.8.0",
-    "eslint-config-prettier": "6.9.0",
-    "eslint-config-standard": "14.0.1",
-    "eslint-config-standard-jsx": "8.1.0",
-    "eslint-plugin-import": "2.19.1",
-    "eslint-plugin-node": "11.0.0",
-    "eslint-plugin-prettier": "3.1.2",
-    "eslint-plugin-promise": "4.2.1",
-    "eslint-plugin-react": "7.17.0",
-    "eslint-plugin-react-hooks": "2.3.0",
-    "eslint-plugin-standard": "4.0.1",
-    "git-cz": "3.3.0",
-    "jest": "24.8.0",
-    "mocha": "^7.0.1",
-    "nodemon": "^2.0.2",
-    "prettier": "1.19.1",
-    "standard-version": "7.0.1",
-    "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10"
+    "@babel/core": "7.13.8",
+    "@babel/eslint-parser": "7.13.8",
+    "@babel/plugin-syntax-top-level-await": "7.12.13",
+    "eslint": "7.21.0",
+    "eslint-config-airbnb": "18.2.1",
+    "eslint-config-prettier": "8.1.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jsx-a11y": "6.4.1",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-prettier": "3.3.1",
+    "eslint-plugin-promise": "4.3.1",
+    "eslint-plugin-react": "7.22.0",
+    "eslint-plugin-react-hooks": "4.2.0",
+    "eslint-plugin-testing-library": "3.10.1",
+    "find-up": "2.1.0",
+    "git-cz": "4.7.6",
+    "mocha": "8.3.0",
+    "nodemon": "2.0.7",
+    "nyc": "15.1.0",
+    "prettier": "2.2.1",
+    "standard-version": "9.1.1",
+    "testdouble": "3.16.1",
+    "webpack": "5.24.3",
+    "webpack-cli": "4.5.0"
   },
   "standard-version": {
-    "message": "💎 release: v%s [skip ci]"
+    "message": "💎 release: v{{currentTag}} [skip ci]"
   },
-  "keywords": [],
-  "description": ""
+  "keywords": [
+    "trivia",
+    "game"
+  ],
+  "description": "Single page trivia based boardgame"
 }

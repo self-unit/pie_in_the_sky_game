@@ -1,35 +1,36 @@
-const Request = function (url) {
-  this.url = url;
-};
+// TODO this needs to be refactored into bag of functions
+export default class Request {
+  constructor(url) {
+    this.url = url;
+  }
 
-Request.prototype.get = function () {
-  return fetch(this.url)
-  .then((response) => response.json());
-};
+  async get() {
+    const response = await fetch(this.url);
+    return response.json();
+  }
 
-Request.prototype.post = function (payload) {
-  return fetch(this.url, {
-    method: 'POST',
-    body: JSON.stringify(payload),
-    headers: { 'Content-Type': 'application/json' }
-  })
-  .then((response) => response.json());
-};
+  async post(payload) {
+    const response = await fetch(this.url, {
+      method: 'POST',
+      body: JSON.stringify(payload),
+      headers: { 'Content-Type': 'application/json' },
+    });
+    return response.json();
+  }
 
-Request.prototype.put = function (id, payload) {
-  return fetch(`${this.url}/${id}`, {
-    method: 'PUT',
-    body: JSON.stringify(payload),
-    headers: { 'Content-Type': 'application/json' }
-  })
-  .then((response) => response.json());
-};
+  async put(id, payload) {
+    const response = await fetch(`${this.url}/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(payload),
+      headers: { 'Content-Type': 'application/json' },
+    });
+    return response.json();
+  }
 
-Request.prototype.delete = function (id) {
-  return fetch(`${this.url}/${id}`, {
-    method: 'DELETE'
-  })
-  .then((response) => response.json());
-};
-
-module.exports = Request;
+  async delete(id) {
+    const response = await fetch(`${this.url}/${id}`, {
+      method: 'DELETE',
+    });
+    return response.json();
+  }
+}

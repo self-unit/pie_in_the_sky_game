@@ -1,4 +1,4 @@
-use heroku_sdpqx20n;
+use pieInTheSky;
 db.dropDatabase();
 
 db.games.insertMany([

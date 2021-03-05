@@ -1,9 +1,11 @@
-const express = require('express');
-const ObjectID = require('mongodb').ObjectID;
+import express from 'express';
+import mongodb from 'mongodb';
 
-const createRouter = function (collection) {
+const { Router } = express;
+const { ObjectID } = mongodb;
 
-  const router = express.Router();
+export default function createRouter(collection) {
+  const router = Router();
 
   router.get('/', (req, res) => {
     collection
@@ -18,7 +20,7 @@ const createRouter = function (collection) {
   });
 
   router.get('/:id', (req, res) => {
-    const id = req.params.id;
+    const { id } = req.params;
     collection
       .find({ _id: ObjectID(id) })
       .toArray()
@@ -31,39 +33,34 @@ const createRouter = function (collection) {
   });
 
   router.post('/', (req, res) => {
-  const newData = req.body;
-  collection.insertOne(newData)
-  .then( (docs) => res.json(docs) )
-  .catch( (err) => console.error(err) );
-});
+    const newData = req.body;
+    collection
+      .insertOne(newData)
+      .then((docs) => res.json(docs))
+      .catch((err) => console.error(err));
+  });
 
-
-
-
-router.put('/:id', (req, res) => {
-  console.log(req);
-  const id = req.params.id;
-  const updatedData = req.body;
-  collection
-    .updateOne(
-      {_id: ObjectID(id)},
-      {$set: updatedData}
-    )
-    .then(() => {
-      collection
-      .find()
-      .toArray()
-      .then((docs) => res.json(docs));
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500);
-      res.json({ status: 500, error: err });
-    });
+  router.put('/:id', (req, res) => {
+    console.log(req);
+    const { id } = req.params;
+    const updatedData = req.body;
+    collection
+      .updateOne({ _id: ObjectID(id) }, { $set: updatedData })
+      .then(() => {
+        collection
+          .find()
+          .toArray()
+          .then((docs) => res.json(docs));
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500);
+        res.json({ status: 500, error: err });
+      });
   });
 
   router.delete('/:id', (req, res) => {
-    const id = req.params.id;
+    const { id } = req.params;
     collection
       .deleteOne({ _id: ObjectID(id) })
       .then(() => {
@@ -80,7 +77,4 @@ router.put('/:id', (req, res) => {
   });
 
   return router;
-
-};
-
-module.exports = createRouter;
+}

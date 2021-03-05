@@ -1,4 +1,4 @@
-function randomizeArray(array) {
+export default function randomizeArray(array) {
   const result = [];
   while (array.length > 0) {
     const next = Math.floor(Math.random() * array.length);
@@ -9,5 +9,3 @@ function randomizeArray(array) {
   }
   return result;
 }
-
-module.exports = randomizeArray;
