@@ -43,7 +43,7 @@ body {
 
 #start-screen-form {
   font-family: 'Graduate', cursive;
-  align: vertical;
+  justify-content: space-evenly;
   display: grid;
   grid-template-columns: 2fr 1.5fr;
   grid-template-rows: 0.3fr 0.3fr 0.3fr;
@@ -114,10 +114,16 @@ body {
   flex-direction: column;
   box-shadow: 0 0px 100px grey, 0 0px 100px rgba(0, 0, 0, .1);
   -webkit-animation: fadein 1s;
+  animation: fadein 1s;
   border-radius: 2%;
 }
 
 @-webkit-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadein {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
@@ -150,35 +156,46 @@ body {
   font-size: 1.2em;
   display: inline-block;
   vertical-align: middle;
-  mark: white;
 }
 
 #player2-score-display {
   font-size: 1.2em;
   display: inline-block;
   vertical-align: middle;
-  mark: black;
 }
 
 #player3-score-display {
   font-size: 1.2em;
   display: inline-block;
   vertical-align: middle;
-  mark: black;
 }
+
 
 #player4-score-display {
   font-size: 1.2em;
   display: inline-block;
   vertical-align: middle;
-  mark: black;
+}
+
+mark {
+  color: black;
 }
 
 #game-view-container .blinkPlayer {
   -webkit-animation: 1s blink step-end infinite;
+  animation: 1s blink step-end infinite;
 }
 
-@-webkit-keyframes "blink" {
+@-webkit-keyframes blink {
+  from, to {
+    color: #F96377;
+  }
+  50% {
+    color: black;
+  }
+}
+
+@keyframes blink {
   from, to {
     color: #F96377;
   }

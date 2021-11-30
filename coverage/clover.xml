@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1659820763755" clover="3.2.0">
+  <project timestamp="1659820763755" name="All files">
+    <metrics statements="33" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="16" coveredmethods="0" elements="53" coveredelements="0" complexity="0" loc="33" ncloc="33" packages="2" files="3" classes="3"/>
+    <package name="helpers">
+      <metrics statements="11" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
+      <file name="pubSub.js" path="C:\Users\tinu_\Documents\code\pie_in_the_sky_game\client\src\helpers\pubSub.js">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+      </file>
+      <file name="request.js" path="C:\Users\tinu_\Documents\code\pie_in_the_sky_game\client\src\helpers\request.js">
+        <metrics statements="8" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="models">
+      <metrics statements="22" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="10" coveredmethods="0"/>
+      <file name="highscore.js" path="C:\Users\tinu_\Documents\code\pie_in_the_sky_game\client\src\models\highscore.js">
+        <metrics statements="22" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="10" coveredmethods="0"/>
+        <line num="12" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

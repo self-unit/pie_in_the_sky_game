@@ -1,40 +1,57 @@
-import url from 'url';
-import express from 'express';
-import { join } from 'path';
-import bodyParser from 'body-parser';
+/* eslint-disable no-console */
+import { URL, fileURLToPath } from 'url';
+import e from 'express';
+import path from 'path';
 import mongodb from 'mongodb';
 import createRouter from './helpers/createRouter.js';
 
-const { json } = bodyParser;
+const { json } = e;
 const { MongoClient } = mongodb;
-const app = express();
+const { join } = path;
 
-const publicPath = join(url.fileURLToPath(new URL('.', import.meta.url)), '../client/public');
-app.use(express.static(publicPath));
+const PORT = process.env.PORT || 3000;
+const app = e();
 
+const publicPath = join(fileURLToPath(new URL('.', import.meta.url)), '../client/public');
+app.use(e.static(publicPath));
 app.use(json());
 
+/** @type {string} */
 const uri = 'mongodb://localhost:27017';
 
-const client = MongoClient(uri);
+const client = new MongoClient(uri);
 
+/** @param {mongodb.MongoClient} dbclient */
+const listDatabases = async (dbclient) => {
+  const databasesList = await dbclient.db().admin().listDatabases();
+  console.log('Databases:');
+  databasesList.databases.forEach((db) => console.log(` - ${db.name}`));
+};
+
+/**
+ * @returns {Promise<void>}
+ */
 async function run() {
   try {
     await client.connect();
 
-    const db = await client.db('pieInTheSky');
+    await listDatabases(client);
+
+    const db = client.db('pieInTheSky');
     db.command({ ping: 1 });
-    console.log('Connected successfully to db');
+    console.info('Connected successfully to db');
     const gamesCollection = db.collection('games');
     const gamesRouter = createRouter(gamesCollection);
     app.use('/api/games', gamesRouter);
+
+    app.listen(PORT, () => {
+      console.info(`Listening on port ${PORT}, ${app.settings.env}`);
+    });
+  } catch (err) {
+    console.error('Connection to DB failed', err);
   } finally {
     await client.close();
   }
 }
 
-await run().catch(console.dir);
-
-app.listen(process.env.PORT || 3000, function () {
-  console.log(`Listening on port ${this.address().port}, ${app.settings.env}`);
-});
+await run();

@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
   <meta charset="utf-8">
   <title>Pie In The Sky</title>
-  <script src="js/bundle.js"></script>
+  <script defer src="js/bundle.js"></script>
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/game.css">
   <link rel="stylesheet" href="css/pie.css">
   <link rel="stylesheet" href="css/board.css">
   <link rel="stylesheet" href="css/card.css">
   <link rel="stylesheet" href="css/player.css">
-  <link href="https://fonts.googleapis.com/css?family=Black+Ops+One|Graduate|Montserrat:400,600|Titillium+Web:600" rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Black+Ops+One|Graduate|Montserrat:400,600|Titillium+Web:600">
 </head>
+
 <body>
 
   <div id="start-screen">
@@ -38,22 +41,26 @@
     <div id="instructions">
       <h5 id="instructions-drop-btn">How To Play</h5>
       <div id="instructions-dropdown" class="hidden">The object of the game is to move around the board by correctly
-        answering trivia questions. Questions are split into six colour-coded categories, which can be seen in the board legend.<br><br>
+        answering trivia questions. Questions are split into six colour-coded categories, which can be seen in the board
+        legend.<br><br>
 
-        On the player's turn, the die is rolled by clicking the "ROLL DIE" button and all possible moves are highlighted on the board.
+        On the player's turn, the die is rolled by clicking the "ROLL DIE" button and all possible moves are highlighted
+        on the board.
         The player must select a given colour and a category related question will be displayed.
-        If answered correctly, the player earns a slice of pie in their score. If you land on a category you have already earned a slice for,
+        If answered correctly, the player earns a slice of pie in their score. If you land on a category you have
+        already earned a slice for,
         you will still have to answer correctly in order to proceed with your turn.
         If answered incorrectly, their turn ends, and the next player starts their turn.<br><br>
 
         A player also has a maximum time of one minute at the board, before play automatically switches to the
-        next player. If the timer runs out and a question has not been answered, the next player will have the opportunity to answer the
+        next player. If the timer runs out and a question has not been answered, the next player will have the
+        opportunity to answer the
         question and gain a slice of pie.<br>
 
         The game is won when all segments on the player's pie are full.</div>
-      </div>
     </div>
-    <div id="form-error"></div>
+  </div>
+  <div id="form-error"></div>
   </div>
   <div id="end-screen">
     <h1>Congratulations!</h1>
@@ -64,20 +71,20 @@
 
   <audio id="winSound">
     <source src="sounds/win.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
+    Your browser does not support the audio element.
   </audio>
 
 
   <div class="wrapper">
 
-    <div id = "categoryLegend">
+    <div id="categoryLegend">
       <h3>Categories:</h3>
-      <div class = "movies categoryLegends">Movies</div>
-      <div class = "science categoryLegends">Science</div>
-      <div class = "sports categoryLegends">Sports</div>
-      <div class = "history categoryLegends">History</div>
-      <div class = "music categoryLegends">Music</div>
-      <div class = "books categoryLegends">Books</div>
+      <div class="movies categoryLegends">Movies</div>
+      <div class="science categoryLegends">Science</div>
+      <div class="sports categoryLegends">Sports</div>
+      <div class="history categoryLegends">History</div>
+      <div class="music categoryLegends">Music</div>
+      <div class="books categoryLegends">Books</div>
     </div>
 
     <div id="game-view-container">
@@ -97,47 +104,47 @@
 
     </div>
 
-    <div id ="board-container">
+    <div id="board-container">
 
-      <div id ="board-grid">
+      <div id="board-grid">
         <div id="a1" class="movies"></div>
-        <div id = "a2" class="science"></div>
-        <div id = "a3" class="sports"></div>
-        <div id = "a4" class="history"></div>
-        <div id = "a5" class="music"></div>
-        <div id = "a6" class="books"></div>
-        <div id = "a7" class="movies"></div>
-        <div id = "b1" class="books"></div>
+        <div id="a2" class="science"></div>
+        <div id="a3" class="sports"></div>
+        <div id="a4" class="history"></div>
+        <div id="a5" class="music"></div>
+        <div id="a6" class="books"></div>
+        <div id="a7" class="movies"></div>
+        <div id="b1" class="books"></div>
         <!-- <span class="hole"></span> -->
-        <div id = "b4" class="science"></div>
-        <div id = "b7" class="science"></div>
-        <div id = "c1" class="music"></div>
-        <div id = "c4" class="books"></div>
-        <div id = "c7" class="sports"></div>
-        <div id = "d1" class="history"></div>
-        <div id = "d2" class="science"></div>
-        <div id = "d3" class="movies"></div>
-        <div id = "d4" class="history"></div>
-        <div id = "d5" class="sports"></div>
-        <div id = "d6" class="science"></div>
-        <div id = "d7" class="history"></div>
-        <div id = "e1" class="sports"></div>
-        <div id = "e4" class="music"></div>
-        <div id = "e7" class="music"></div>
-        <div id = "f1" class="science"></div>
-        <div id = "f4" class="science"></div>
-        <div id = "f7" class="books"></div>
-        <div id = "g1" class="movies"></div>
-        <div id = "g2" class="books"></div>
-        <div id = "g3" class="music"></div>
-        <div id = "g4" class="history"></div>
-        <div id = "g5" class="sports"></div>
-        <div id = "g6" class="science"></div>
-        <div id = "g7" class="movies"></div>
-        <div id ="p1-piece" class="board-piece"></div>
-        <div id ="p2-piece" class="board-piece"></div>
-        <div id ="p3-piece" class="board-piece"></div>
-        <div id ="p4-piece" class="board-piece"></div>
+        <div id="b4" class="science"></div>
+        <div id="b7" class="science"></div>
+        <div id="c1" class="music"></div>
+        <div id="c4" class="books"></div>
+        <div id="c7" class="sports"></div>
+        <div id="d1" class="history"></div>
+        <div id="d2" class="science"></div>
+        <div id="d3" class="movies"></div>
+        <div id="d4" class="history"></div>
+        <div id="d5" class="sports"></div>
+        <div id="d6" class="science"></div>
+        <div id="d7" class="history"></div>
+        <div id="e1" class="sports"></div>
+        <div id="e4" class="music"></div>
+        <div id="e7" class="music"></div>
+        <div id="f1" class="science"></div>
+        <div id="f4" class="science"></div>
+        <div id="f7" class="books"></div>
+        <div id="g1" class="movies"></div>
+        <div id="g2" class="books"></div>
+        <div id="g3" class="music"></div>
+        <div id="g4" class="history"></div>
+        <div id="g5" class="sports"></div>
+        <div id="g6" class="science"></div>
+        <div id="g7" class="movies"></div>
+        <!-- <div id="p1-piece" class="board-piece"></div>
+        <div id="p2-piece" class="board-piece"></div>
+        <div id="p3-piece" class="board-piece"></div>
+        <div id="p4-piece" class="board-piece"></div> -->
       </div>
 
     </div>
@@ -146,4 +153,5 @@
 
   </div>
 </body>
+
 </html>

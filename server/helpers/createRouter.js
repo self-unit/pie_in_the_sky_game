@@ -1,13 +1,19 @@
+/* eslint-disable no-console */
 import express from 'express';
 import mongodb from 'mongodb';
 
 const { Router } = express;
-const { ObjectID } = mongodb;
+const { ObjectId } = mongodb;
 
+/**
+ *
+ * @param {mongodb.Collection<any>} collection
+ * @returns {express.Router}
+ */
 export default function createRouter(collection) {
   const router = Router();
 
-  router.get('/', (req, res) => {
+  router.route('/').get((req, res) => {
     collection
       .find()
       .toArray()
@@ -19,10 +25,10 @@ export default function createRouter(collection) {
       });
   });
 
-  router.get('/:id', (req, res) => {
+  router.route('/:id').get((req, res) => {
     const { id } = req.params;
     collection
-      .find({ _id: ObjectID(id) })
+      .find({ dbId: new ObjectId(id) })
       .toArray()
       .then((docs) => res.json(docs))
       .catch((err) => {
@@ -32,7 +38,7 @@ export default function createRouter(collection) {
       });
   });
 
-  router.post('/', (req, res) => {
+  router.route('/').post((req, res) => {
     const newData = req.body;
     collection
       .insertOne(newData)
@@ -40,12 +46,12 @@ export default function createRouter(collection) {
       .catch((err) => console.error(err));
   });
 
-  router.put('/:id', (req, res) => {
-    console.log(req);
+  router.route('/:id').put((req, res) => {
+    console.debug(req);
     const { id } = req.params;
     const updatedData = req.body;
     collection
-      .updateOne({ _id: ObjectID(id) }, { $set: updatedData })
+      .updateOne({ dbId: new ObjectId(id) }, { $set: updatedData })
       .then(() => {
         collection
           .find()
@@ -59,10 +65,10 @@ export default function createRouter(collection) {
       });
   });
 
-  router.delete('/:id', (req, res) => {
+  router.route('/:id').delete((req, res) => {
     const { id } = req.params;
     collection
-      .deleteOne({ _id: ObjectID(id) })
+      .deleteOne({ dbId: new ObjectId(id) })
       .then(() => {
         collection
           .find()

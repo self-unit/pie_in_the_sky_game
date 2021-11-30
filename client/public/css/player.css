@@ -29,9 +29,19 @@
 
 #timer {
   -webkit-animation: 1s blink step-end infinite;
+  animation: 1s blink step-end infinite;
 }
 
-@-webkit-keyframes "blink" {
+@-webkit-keyframes blink {
+  from, to {
+    color: #F96377;
+  }
+  50% {
+    color: black;
+  }
+}
+
+@keyframes blink {
   from, to {
     color: #F96377;
   }

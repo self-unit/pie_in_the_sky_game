@@ -3,15 +3,15 @@ db.dropDatabase();
 
 db.games.insertMany([
   {
-    name: "Sharon",
-    wins : 5
+    name: 'Sharon',
+    wins: 5,
   },
   {
-    name: "April",
-    wins: 8
+    name: 'April',
+    wins: 8,
   },
   {
-    name: "Jacob",
-    wins: 3
-  }
+    name: 'Jacob',
+    wins: 3,
+  },
 ]);

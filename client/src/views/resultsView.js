@@ -1,27 +1,35 @@
-import { chart as _chart } from 'highcharts';
+import { chart } from 'highcharts';
 import createAndAppend from '../helpers/createAndAppend.js';
 import { subscribe } from '../helpers/pubSub.js';
 
-class ResultsView {
-  constructor() {}
-
+/**
+ * A view of the results & high scores after finishing the game
+ */
+export default class ResultsView {
   bindEvent() {
     subscribe('Game:end-game', (event) => {
+      /** @type {HTMLCanvasElement | null} */
       const container = document.querySelector('#end-screen');
+      if (container) container.style.display = 'flex';
       const messageContainer = document.querySelector('#end-message');
-      container.style.display = 'flex';
       const winner = event.detail.currentPlayer.name;
-      createAndAppend('h2', null, null, `${winner} won!`, messageContainer);
+      if (messageContainer) createAndAppend('h2', messageContainer, `${winner} won!`, null, null);
     });
-    subscribe('HighScore:allscores', (evt) => {
-      const allScores = evt.detail;
+    subscribe('HighScore:allscores', (event) => {
+      const allScores = event.detail;
+      /** @type {HTMLCanvasElement | null} */
       const highScoresContainer = document.querySelector('#highscores');
-      this.render(highScoresContainer, allScores);
+      if (highScoresContainer) this.render(highScoresContainer, allScores);
     });
   }
 
+  /**
+   *
+   * @param {HTMLElement} section
+   * @param {import('../../../params').Entry[]} scores
+   */
   render(section, scores) {
-    _chart(section, {
+    chart(section, {
       chart: {
         type: 'bar',
       },
@@ -59,12 +67,10 @@ class ResultsView {
       },
       series: [
         {
-          name: 'Pie In The Sky Highscores',
-          data: scores.map((score) => parseInt(score.wins, 10)),
+          type: 'bar',
+          data: scores.map((score) => score.wins),
         },
       ],
     });
   }
 }
-
-export default ResultsView;

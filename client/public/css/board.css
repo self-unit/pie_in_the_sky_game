@@ -176,7 +176,7 @@
 } */
 
 .board-piece {
-  display: none;
+  display: block;
   position: absolute;
   z-index: 1;
   top: 4px;

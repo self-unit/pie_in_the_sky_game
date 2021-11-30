@@ -1,3 +1,7 @@
+/**
+ * Randomise all elements in an array
+ * @param {string[]} array
+ */
 export default function randomizeArray(array) {
   const result = [];
   while (array.length > 0) {

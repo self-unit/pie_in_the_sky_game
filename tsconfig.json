@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "lib": ["ESNext", "DOM"],
+    "moduleResolution": "node",
+    "module": "ESNext",
+    "target": "ESNext",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "checkJs": true,
+    "noEmit": true,
+    "strict": true
+  },
+  "include": ["server/**/*.js", "client/**/*.js", "*.d.ts"],
+  "exclude": ["node_modules", "server/db/seeds.js"]
+}

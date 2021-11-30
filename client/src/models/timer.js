@@ -1,15 +1,20 @@
 import { publish } from '../helpers/pubSub.js';
 
-class Timer {
+/**
+ * A timer that has timeLeft and second ticks
+ */
+export default class Timer {
+  /**
+   * @param {number} time
+   */
   constructor(time) {
+    if (!time) throw new Error('Timer:time must be provided');
     this.timeLeft = time;
-    this.tick = null;
+    this.tick = undefined;
   }
 
-  countdown(section) {
-    this.tick = setInterval(() => {
-      this.motion(section);
-    }, 1000);
+  endTimer() {
+    if (this.tick) clearInterval(this.tick);
   }
 
   motion() {
@@ -21,9 +26,9 @@ class Timer {
     publish('Timer:currentTime', this.timeLeft);
   }
 
-  endTimer() {
-    clearInterval(this.tick);
+  countdown() {
+    this.tick = setInterval(() => {
+      this.motion();
+    }, 1000);
   }
 }
-
-export default Timer;

@@ -1,5 +1,6 @@
+import createAndAppend from './helpers/createAndAppend.js';
 import Game from './models/game.js';
-import Board from './models/board.js';
+import * as Board from './models/board.js';
 import Player from './models/player.js';
 import Card from './models/card.js';
 import HighScore from './models/highscore.js';
@@ -10,39 +11,61 @@ import GameScoreView from './views/gameScoreView.js';
 import ResultsView from './views/resultsView.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const startGameForm = document.querySelector('#start-screen-form');
-  const startScreenDiv = document.querySelector('#start-screen');
+  /** @type {HTMLDivElement | null} */
+  let startScreenDiv = document.querySelector('#start-screen');
+  if (!startScreenDiv)
+    startScreenDiv = createAndAppend('div', document.body, null, '#start-screen', 'start-screen');
+  /** @type {HTMLFormElement | null} */
+  let startGameForm = document.querySelector('#start-screen-form');
+  if (!startGameForm)
+    startGameForm = createAndAppend(
+      'form',
+      document.body,
+      null,
+      '#start-screen-form',
+      'start-form'
+    );
+  /** @type {HTMLButtonElement | null} */
+  let button = document.querySelector('#instructions-drop-btn');
+  if (!button)
+    button = createAndAppend(
+      'button',
+      startGameForm,
+      null,
+      '#instructions-drop-btn',
+      'instructions-btn'
+    );
 
-  document.querySelector('#instructions-drop-btn').addEventListener('click', () => {
-    document.querySelector('#instructions-dropdown').classList.toggle('hidden');
+  button.addEventListener('click', () => {
+    document.querySelector('#instructions-dropdown')?.classList.toggle('hidden');
   });
 
   startGameForm.addEventListener('submit', (event) => {
     event.preventDefault();
-    if (event.target.player4.value && !event.target.player3.value) {
-      document.querySelector('#form-error').textContent = 'Please enter a name for Player 3.';
+    if (event.target?.player4.value && !event.target.player3.value) {
+      const formError = document.querySelector('#form-error');
+      if (formError) formError.textContent = 'Please enter a name for Player 3.';
     } else {
-      const player1 = new Player(event.target.player1.value, 'p1', 'player1');
+      const player1 = new Player(event.target?.player1.value, 1, 'player1');
       player1.colour = 'darkblue';
-      const player2 = new Player(event.target.player2.value, 'p2', 'player2');
+      const player2 = new Player(event.target?.player2.value, 2, 'player2');
       player2.colour = 'black';
       let player3 = null;
       let player4 = null;
-      if (event.target.player3.value) {
-        player3 = new Player(event.target.player3.value, 'p3', 'player3');
+      if (event.target?.player3.value) {
+        player3 = new Player(event.target.player3.value, 3, 'player3');
         player3.colour = 'darkgreen';
       }
-      if (event.target.player4.value) {
-        player4 = new Player(event.target.player4.value, 'p4', 'player4');
+      if (event.target?.player4.value) {
+        player4 = new Player(event.target.player4.value, 4, 'player4');
         player4.colour = 'darkred';
       }
 
-      startScreenDiv.classList.add('end');
+      startScreenDiv?.classList.add('end');
 
-      const board = new Board();
-      board.bindEvents();
+      Board.bindEvents();
 
-      const game = new Game(player1, player2, player3, player4, board);
+      const game = new Game(player1, player2, player3, player4);
       game.startGame();
 
       const playerView = new PlayerView(game);
@@ -60,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const resultsView = new ResultsView();
       resultsView.bindEvent();
 
-      const card = new Card(event.target[0].value);
+      const card = new Card(event.target && event.target[0].value);
       card.bindEvents();
 
       const highScoreUrl = 'https://pieintheskie.herokuapp.com/api/games';

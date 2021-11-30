@@ -1,3 +1,6 @@
+/**
+ * A map of pixel locations for player tokens to move to
+ */
 export default {
   a1: {
     left: 0,

@@ -1,23 +1,29 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import mocha from 'mocha';
-import { strictEqual, deepStrictEqual } from 'assert';
 import Player from '../player.js';
 
-const { describe, it, beforeEach } = mocha;
+/** @type {Player} */
+let player;
 
-describe('Player', function () {
-  let player;
-  beforeEach(function () {
-    player = new Player('Mike', 'p2', 'player2');
+describe('Player', () => {
+  describe('correct initialisation', () => {
+    beforeEach(() => {
+      player = new Player('Mike', 2, 'player2');
+    });
+
+    it('should have a position', () => {
+      const actual = player.position;
+      expect(actual).toBe('a1');
+    });
+
+    it('should have a score', () => {
+      const actual = player.score;
+      expect(actual).toStrictEqual([0, 0, 0, 0, 0, 0]);
+    });
   });
 
-  it('should have a position', function () {
-    const actual = player.position;
-    strictEqual(actual, 'a1');
-  });
-
-  it('should have a score', function () {
-    const actual = player.score;
-    deepStrictEqual(actual, [0, 0, 0, 0, 0, 0]);
+  describe('incorrect initialisation', () => {
+    it('should throw an error if no name is provided', () => {
+      // @ts-ignore intentional bad type
+      expect(() => new Player(null, 2, 'player2')).toThrow(Error);
+    });
   });
 });
