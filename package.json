@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/self-unit/pie_in_the_sky#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "he": "^1.2.0",
     "highcharts": "^8.2.0",
     "mongodb": "^3.6.2",
